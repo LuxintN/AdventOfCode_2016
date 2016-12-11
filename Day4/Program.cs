@@ -59,18 +59,18 @@ namespace Day4
                 if (firstFiveMostCommonChars == room.Checksum) sectorSum += room.SectorId;
             }
 
-            Console.WriteLine(sectorSum); // 409147
+            Console.WriteLine(sectorSum);
 
             foreach (var room in rooms)
             {
                 if (room.GetDecryptedName().Contains("northpole"))
                 {
-                    Console.WriteLine("North Pole room sector ID: " + room.SectorId); // 991
+                    Console.WriteLine("North Pole room sector ID: " + room.SectorId);
                     break;
                 }
             }
 
-            //SaveDecryptedRoomNamesToFile(rooms);
+            SaveDecryptedRoomNamesToFile(rooms);
 
             Console.ReadLine();
         }

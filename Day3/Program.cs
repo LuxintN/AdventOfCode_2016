@@ -14,8 +14,8 @@ namespace Day3
         {
             var input = LoadDataFromInputFile();
 
-            Console.WriteLine(GetPossibleTriangleCountByRows(input));  // 869
-            Console.WriteLine(GetPossibleTriangleCountByColumns(input)); //1544
+            Console.WriteLine(GetPossibleTriangleCountByRows(input));
+            Console.WriteLine(GetPossibleTriangleCountByColumns(input));
             
             Console.ReadLine();
         }
