@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Day3
 {
-    class Program
+    public class Day3Puzzles
     {
         static void Main(string[] args)
         {
@@ -47,12 +44,12 @@ namespace Day3
             return input;
         }
 
-        private static int GetPossibleTriangleCountByRows(List<List<int>> input)
+        public static int GetPossibleTriangleCountByRows(List<List<int>> input)
         {
             return input.Count(IsPossibleTriangle);
         }
 
-        private static int GetPossibleTriangleCountByColumns(List<List<int>> input)
+        public static int GetPossibleTriangleCountByColumns(List<List<int>> input)
         {
             int possibleTriangles = 0;
 
@@ -77,7 +74,7 @@ namespace Day3
             }
         }
         
-        private static bool IsPossibleTriangle(List<int> triangle)
+        public static bool IsPossibleTriangle(List<int> triangle)
         {
             return triangle[0] + triangle[1] > triangle[2]
                    && triangle[0] + triangle[2] > triangle[1]

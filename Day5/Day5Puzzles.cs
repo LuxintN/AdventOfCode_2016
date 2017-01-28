@@ -3,38 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Day5
 {
-    class Program
+    public class Day5Puzzles
     {
         static void Main(string[] args)
         {
-            var input = "wtnhxymk"; // "abc"
+            var input = "wtnhxymk";
 
-            string password1;
-            char[] password2;
-
+            string password1, password2;
             GetPasswords(input, out password1, out password2);
             
-            Console.WriteLine(password1.ToLower() + "       " + string.Concat(password2));
+            Console.WriteLine(password1.ToLower() + "       " + password2);
 
             Console.ReadLine();
         }
 
-        private static void GetPasswords(string input, out string password1, out char[] password2)
+        public static void GetPasswords(string input, out string password1, out string password2)
         {
             password1 = "";
-            password2 = new char[8];
+            var password2Array = new char[8];
 
             using (var md5 = MD5.Create())
             {
                 int attempt = 0;
 
-                while (password1.Length < 8 || password2.Any(c => c == '\0'))
+                while (password1.Length < 8 || password2Array.Any(c => c == '\0'))
                 {
-                    var inputWithNumber = input + attempt++; // "abc3231929"; 
+                    var inputWithNumber = input + attempt++;
                     var hexadecimalHash = GetHexadecimalHash(md5, inputWithNumber);
 
                     if (DoesHashStartWithFiveZeroes(hexadecimalHash))
@@ -42,13 +39,15 @@ namespace Day5
                         if (password1.Length < 8) password1 += hexadecimalHash[5];
 
                         int position;
-                        if (int.TryParse(hexadecimalHash[5].ToString(), out position) && position < 8 && password2[position] == '\0')
+                        if (int.TryParse(hexadecimalHash[5].ToString(), out position) && position < 8 && password2Array[position] == '\0')
                         {
-                            password2[position] = hexadecimalHash[6];
+                            password2Array[position] = hexadecimalHash[6];
                         }
                     }
                 }
             }
+
+            password2 = string.Concat(password2Array);
         }
 
         private static bool DoesHashStartWithFiveZeroes(string hexadecimalHash)

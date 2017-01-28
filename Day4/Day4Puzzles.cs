@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace Day4
 {
-    class Room
+    public class Room
     {
         public string EncryptedName { get; set; }
         public int SectorId { get; set; }
@@ -28,7 +27,7 @@ namespace Day4
                 }
                 else
                 {
-                    var shiftedChar = SectorId%AlphabetLetterCount + character;
+                    var shiftedChar = SectorId % AlphabetLetterCount + character;
                     decryptedName += (char) (shiftedChar <= 'z' ? shiftedChar : shiftedChar - AlphabetLetterCount);
                 }
             }
@@ -37,29 +36,13 @@ namespace Day4
         }
     }
 
-    class Program
+    public class Day4Puzzles
     {
         static void Main(string[] args)
         {
-            //var rooms = LoadTestData();
-
             var rooms = LoadDataFromInputFile();
 
-            int sectorSum = 0;
-
-            foreach (var room in rooms)
-            {
-                var firstFiveMostCommonChars = string.Concat(room.EncryptedName.Replace("-", "")
-                    .GroupBy(c => c)
-                    .OrderByDescending(g => g.Count())
-                    .ThenBy(g => g.Key) // if use counts are equal, sort in alphabetic order
-                    .Take(5)
-                    .Select(g => g.Key));
-
-                if (firstFiveMostCommonChars == room.Checksum) sectorSum += room.SectorId;
-            }
-
-            Console.WriteLine(sectorSum);
+            Console.WriteLine(GetRealRoomsSectorSum(rooms));
 
             foreach (var room in rooms)
             {
@@ -70,44 +53,34 @@ namespace Day4
                 }
             }
 
-            SaveDecryptedRoomNamesToFile(rooms);
+            //SaveDecryptedRoomNamesToFile(rooms); // just for fun :D
 
             Console.ReadLine();
         }
 
-        private static List<Room> LoadTestData()
+        public static int GetRealRoomsSectorSum(List<Room> rooms)
         {
-            //// aaaaa-bbb-z-y-x-123[abxyz]
-            //// a-b-c-d-e-f-g-h-987[abcde]
-            //// not-a-real-room-404[oarel]
+            int sectorSum = 0;
 
-            return new List<Room>()
+            foreach (var room in rooms)
             {
-                //new Room()
-                //{
-                //    EncryptedName = "aaaaa-bbb-z-y-x-",
-                //    SectorId = 123,
-                //    Checksum = "abxyz"
-                //},
-                //new Room()
-                //{
-                //    EncryptedName = "a-b-c-d-e-f-g-h-",
-                //    SectorId = 987,
-                //    Checksum = "abcde"
-                //},
-                //new Room()
-                //{
-                //    EncryptedName = "not-a-real-room-",
-                //    SectorId = 404,
-                //    Checksum = "oarel"
-                //},
-                new Room()
+                if (GetFiveMostCommonLetters(room.EncryptedName) == room.Checksum)
                 {
-                    EncryptedName = "qzmt-zixmtkozy-ivhz-", // "very encrypted name"
-                    SectorId = 343,
-                    Checksum = ""
+                    sectorSum += room.SectorId;
                 }
-            };
+            }
+
+            return sectorSum;
+        }
+
+        public static string GetFiveMostCommonLetters(string name)
+        {
+            return string.Concat(name.Replace("-", "")
+                .GroupBy(c => c)
+                .OrderByDescending(g => g.Count())
+                .ThenBy(g => g.Key) // if use counts are equal, sort in alphabetic order
+                .Take(5)
+                .Select(g => g.Key));
         }
 
         private static List<Room> LoadDataFromInputFile()

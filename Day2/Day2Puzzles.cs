@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Day2
 {
-    class Program
+    class Position
     {
-        class Position
+        public int Row { get; set; }
+        public int Column { get; set; }
+    }
+    
+    public class Day2Puzzles
+    {
+        public static readonly List<char[][]> Keypads = new List<char[][]>
         {
-            public int Row { get; set; }
-            public int Column { get; set; }
-        }
+            new[]
+            {
+                new[] {'1', '2', '3'},
+                new[] {'4', '5', '6'},
+                new[] {'7', '8', '9'}
+            },
+            new[]
+            {
+                new[] {' ', ' ', '1', ' ', ' '},
+                new[] {' ', '2', '3', '4', ' '},
+                new[] {'5', '6', '7', '8', '9'},
+                new[] {' ', 'A', 'B', 'C', ' '},
+                new[] {' ', ' ', 'D', ' ', ' '}
+            }
+        };
 
         static void Main(string[] args)
         {
-            //var instructions = new[]
-            //{
-            //    "ULL",
-            //    "RRDDD",
-            //    "LURDL",
-            //    "UUUUD"
-            //};  // 1985, 5DB3
-
             var instructions = new[]
             {
                 "RDLRUUULRRDLRLLRLDDUDLULULDDULUDRRUURLRLLUULDURRULLRULDRRDLLULLRLLDRLDDRRRRLLRLURRRDRDULRDUULDDDULURUDDRRRUULUDRLLUUURLUDRUUUDRDUULLRLLUDDRURRDDDRDLUUURLRLLUDRURDUDUULDDLLRDURULLLURLDURLUUULDULDDULULLLRRUDLRUURDRDLLURLUDULDUUUURRLDLUDRULUDLDLLDRLDDDRRLLDUDLLRRDDDRLUDURLLLDRUDDLDDRRLUDRRDUDLRRLULDULURULDULUULDRLLDRUUDDRLLUDRULLRRRLRDLRLUDLRULDRDLRDRLRULUDUURRUUULLDDDDUDDLDDDDRRULRDLRDDULLDLDLLDLLDLLDRRDDDRDDLRRDDDRLLLLURRDLRRLDRURDDURDULDDRUURUDUDDDRDRDDRLRRLRULLDRLDLURLRLRUDURRRDLLLUDRLRDLLDDDLLUDRLDRRUUDUUDULDULLRDLUDUURLDDRUDR",
@@ -34,25 +40,7 @@ namespace Day2
                 "URLULLLDRDDULRRLRLUULDRUUULDRRLLDDDLDUULLDRLULRRDRRDDDRRDLRRLLDDRDULLRRLLUDUDDLDRDRLRDLRDRDDUUDRLLRLULLULRDRDDLDDDRLURRLRRDLUDLDDDLRDLDLLULDDRRDRRRULRUUDUULDLRRURRLLDRDRRDDDURUDRURLUDDDDDDLLRLURULURUURDDUDRLDRDRLUUUULURRRRDRDULRDDDDRDLLULRURLLRDULLUUDULULLLLRDRLLRRRLLRUDUUUULDDRULUDDDRRRULUDURRLLDURRDULUDRUDDRUURURURLRDULURDDDLURRDLDDLRUDUUDULLURURDLDURRDRDDDLRRDLLULUDDDRDLDRDRRDRURRDUDRUURLRDDUUDLURRLDRRDLUDRDLURUDLLRRDUURDUDLUDRRL"
             }; 
 
-            var keypads = new List<char[][]>
-            {
-                new[]
-                {
-                    new[] {'1', '2', '3'},
-                    new[] {'4', '5', '6'},
-                    new[] {'7', '8', '9'}
-                },
-                new[]
-                {
-                    new[] {' ', ' ', '1', ' ', ' '},
-                    new[] {' ', '2', '3', '4', ' '},
-                    new[] {'5', '6', '7', '8', '9'},
-                    new[] {' ', 'A', 'B', 'C', ' '},
-                    new[] {' ', ' ', 'D', ' ', ' '}
-                }
-            };
-
-            foreach (var keypad in keypads)
+            foreach (var keypad in Keypads)
             {
                 Console.WriteLine(GetCode(instructions, keypad));
             }
@@ -60,7 +48,7 @@ namespace Day2
             Console.ReadLine();
         }
 
-        private static string GetCode(string[] instructions, char[][] keypad)
+        public static string GetCode(string[] instructions, char[][] keypad)
         {
             string code = "";
             var position = GetStartPoisition(keypad); 
