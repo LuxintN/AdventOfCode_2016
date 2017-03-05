@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9911BC1-16FF-4FF6-B6BF-6DFF33DEB6FB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{8AB3AAB6-AEE3-43E4-985A-40B5D8E015D7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTests</RootNamespace>
-    <AssemblyName>UnitTests</AssemblyName>
+    <RootNamespace>Day6</RootNamespace>
+    <AssemblyName>Day6</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,14 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,46 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Day1Tests.cs" />
-    <Compile Include="Day4Tests.cs" />
-    <Compile Include="Day3Tests.cs" />
-    <Compile Include="Day2Tests.cs" />
-    <Compile Include="Day5Tests.cs" />
-    <Compile Include="Day6Tests.cs" />
+    <Compile Include="Day6Puzzles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Day1\Day1.csproj">
-      <Project>{6a13ce22-273e-41e2-92d5-b225e3c2414e}</Project>
-      <Name>Day1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Day2\Day2.csproj">
-      <Project>{8dd18674-d753-4f9a-9c51-59a527e98cbe}</Project>
-      <Name>Day2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Day3\Day3.csproj">
-      <Project>{f9243ed5-a44f-45e1-9d84-0e7b79a37990}</Project>
-      <Name>Day3</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Day4\Day4.csproj">
-      <Project>{7aad0dea-ccf3-4fe5-8ec9-31d83fbbd1d0}</Project>
-      <Name>Day4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Day5\Day5.csproj">
-      <Project>{dea5f8e1-9020-408d-9f68-d02ac2b15585}</Project>
-      <Name>Day5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Day6\Day6.csproj">
-      <Project>{8ab3aab6-aee3-43e4-985a-40b5d8e015d7}</Project>
-      <Name>Day6</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <Content Include="Input.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
