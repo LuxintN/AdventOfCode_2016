@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using Utilities;
 
 namespace Day9
 {
     public class Day9Puzzles
     {   
-        static void Main(string[] args)
+        static void Main()
         {
-            var input = LoadDataFromInputFile();
+            var input = FileHelper.ReadToEnd(Environment.CurrentDirectory + @"\..\..\Input.txt");
 
             string decompressedString;
 
@@ -113,18 +108,6 @@ namespace Day9
             }
 
             return decompressedStringLength;
-        }
-
-        private static string LoadDataFromInputFile()
-        {
-            string input;
-
-            using (var streamReader = new StreamReader(Environment.CurrentDirectory + @"\..\..\Input.txt"))
-            {
-                input = streamReader.ReadToEnd();
-            }
-
-            return input;
         }
     }
 }

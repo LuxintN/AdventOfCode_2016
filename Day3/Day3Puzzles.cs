@@ -7,7 +7,7 @@ namespace Day3
 {
     public class Day3Puzzles
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var input = LoadDataFromInputFile();
 

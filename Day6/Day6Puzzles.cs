@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Utilities;
 
 namespace Day6
 {
     public class Day6Puzzles
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var input = LoadDataFromInputFile();
+            var input = FileHelper.ReadToEnd(Environment.CurrentDirectory + @"\..\..\Input.txt");
 
             Console.WriteLine(GetMessage(input, true));
             Console.WriteLine(GetMessage(input, false));
@@ -64,14 +65,6 @@ namespace Day6
             }
 
             return columns;
-        }
-
-        private static string LoadDataFromInputFile()
-        {
-            using (var streamReader = new StreamReader(Environment.CurrentDirectory + @"\..\..\Input.txt"))
-            {
-                return streamReader.ReadToEnd();
-            }
         }
     }
 }

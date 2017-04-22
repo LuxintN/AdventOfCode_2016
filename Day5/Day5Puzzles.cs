@@ -8,7 +8,7 @@ namespace Day5
 {
     public class Day5Puzzles
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var input = "wtnhxymk";
 

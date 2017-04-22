@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 namespace Day2
 {
-    class Position
-    {
-        public int Row { get; set; }
-        public int Column { get; set; }
-    }
-    
     public class Day2Puzzles
     {
         public static readonly List<char[][]> Keypads = new List<char[][]>
@@ -29,7 +23,7 @@ namespace Day2
             }
         };
 
-        static void Main(string[] args)
+        static void Main()
         {
             var instructions = new[]
             {

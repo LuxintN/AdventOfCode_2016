@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Utilities;
 
 namespace Day7
 {
@@ -10,9 +10,9 @@ namespace Day7
     {
         private static readonly Regex insideSquareBracketsRegex = new Regex(@"\[\w+\]");
         
-        static void Main(string[] args)
+        static void Main()
         {
-            var addresses = LoadDataFromInputFile();
+            var addresses = FileHelper.ReadLines(Environment.CurrentDirectory + @"\..\..\Input.txt");
 
             var addressesSupportingTlsCount = addresses.Count(CheckIfSupportsTls);
             Console.WriteLine(addressesSupportingTlsCount);
@@ -94,21 +94,5 @@ namespace Day7
         {
             return insideSquareBracketsRegex.Matches(input).Cast<Match>().Select(m => m.Value.Substring(1, m.Value.Length - 2));
         }
-
-        private static List<string> LoadDataFromInputFile()
-        {
-            var lines = new List<string>();
-
-            using (var streamReader = new StreamReader(Environment.CurrentDirectory + @"\..\..\Input.txt"))
-            {
-                while (!streamReader.EndOfStream)
-                {
-                    lines.Add(streamReader.ReadLine());
-                }
-            }
-
-            return lines;
-        }
-
     }
 }

@@ -4,41 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-
 namespace Day4
 {
-    public class Room
-    {
-        public string EncryptedName { get; set; }
-        public int SectorId { get; set; }
-        public string Checksum { get; set; }
-
-        private const int AlphabetLetterCount = 26;
-
-        public string GetDecryptedName()
-        {
-            string decryptedName = "";
-
-            foreach (var character in EncryptedName)
-            {
-                if (character == '-')
-                {
-                    decryptedName += " ";
-                }
-                else
-                {
-                    var shiftedChar = SectorId % AlphabetLetterCount + character;
-                    decryptedName += (char) (shiftedChar <= 'z' ? shiftedChar : shiftedChar - AlphabetLetterCount);
-                }
-            }
-            
-            return decryptedName;
-        }
-    }
-
     public class Day4Puzzles
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var rooms = LoadDataFromInputFile();
 
